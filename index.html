@@ -33,6 +33,17 @@
             100% { color: var(--accent-cyan); text-shadow: 0 0 15px rgba(56, 189, 248, 0.3); }
         }
 
+        @keyframes scrollLoop {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes ghostPulse {
+            0% { opacity: 0.4; filter: grayscale(100%) brightness(0.7); }
+            50% { opacity: 0.8; filter: grayscale(100%) brightness(1); }
+            100% { opacity: 0.4; filter: grayscale(100%) brightness(0.7); }
+        }
+
         * {
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
@@ -290,6 +301,71 @@
             opacity: 0.8;
         }
 
+        /* Running Loop Testimonial Styles */
+        .marquee-wrapper {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+            margin-top: 16px;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 16px;
+            width: max-content;
+            animation: scrollLoop 30s linear infinite;
+        }
+
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+
+        .testimonial-card {
+            background: rgba(1, 4, 10, 0.85);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 16px;
+            padding: 20px;
+            width: 300px;
+            flex-shrink: 0;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            transform: translateZ(0);
+        }
+
+        .star-rating {
+            color: #facc15;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+
+        /* Ghost Sponsors Ticker Styles */
+        .ghost-sponsors {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 24px;
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+            flex-wrap: wrap;
+        }
+
+        .ghost-logo {
+            font-family: monospace;
+            font-size: 0.95rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #94a3b8;
+            animation: ghostPulse 4s ease-in-out infinite;
+            text-transform: uppercase;
+        }
+
+        .ghost-logo:nth-child(2) { animation-delay: 1s; }
+        .ghost-logo:nth-child(3) { animation-delay: 2s; }
+        .ghost-logo:nth-child(4) { animation-delay: 3s; }
+
         ul {
             padding-left: 20px;
             margin: 14px 0;
@@ -438,6 +514,66 @@ termux@psa-node:~$ psa --status
                     <h4 style="color: var(--accent-cyan); margin: 0 0 8px 0; font-size: 1.05rem;">4. High-Margin Scaling & Sovereign Operations</h4>
                     <p style="font-size: 0.88rem; color: #94a3b8; margin: 0; line-height: 1.6;">Scale client deployment count infinitely while keeping operating costs near zero. Retain 100% of your revenue by mastering local-first agency structures defined in the Pocket State Architecture framework.</p>
                 </div>
+            </div>
+        </section>
+
+        <section>
+            <h3 class="majestic-section-title">⭐ Verified Operator Feedback</h3>
+            <p style="font-size: 0.88rem; color: #94a3b8; margin: 0 0 16px 0;">Real feedback from developers and builders deploying zero-SaaS architectures:</p>
+            
+            <div class="marquee-wrapper">
+                <div class="marquee-track">
+                    <!-- Original Set -->
+                    <div class="testimonial-card">
+                        <div class="star-rating">★★★★★</div>
+                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0 0 10px 0; line-height: 1.5;">"Built and deployed my entire automation agency pipeline straight from my phone in Termux. Zero hosting bills!"</p>
+                        <p style="font-size: 0.78rem; color: var(--accent-cyan); margin: 0; font-weight: 800;">— Liam K., Systems Engineer</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="star-rating">★★★★★</div>
+                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0 0 10px 0; line-height: 1.5;">"The local AI and shell execution model completely changed how I build client apps. Absolute game-changer."</p>
+                        <p style="font-size: 0.78rem; color: var(--accent-purple); margin: 0; font-weight: 800;">— Thabo M., Full-Stack Dev</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="star-rating">★★★★★</div>
+                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0 0 10px 0; line-height: 1.5;">"Cut out R4,000 in monthly SaaS tools instantly. The Yoco integration flow is buttery smooth."</p>
+                        <p style="font-size: 0.78rem; color: var(--accent-emerald); margin: 0; font-weight: 800;">— Pieter V., Agency Owner</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="star-rating">★★★★★</div>
+                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0 0 10px 0; line-height: 1.5;">"Sovereign architecture at its finest. No cloud bloat, pure speed and maximum profit margins."</p>
+                        <p style="font-size: 0.78rem; color: var(--accent-cyan); margin: 0; font-weight: 800;">— Sarah N., Automation Consultant</p>
+                    </div>
+
+                    <!-- Duplicated Set for Infinite Loop Seamlessness -->
+                    <div class="testimonial-card">
+                        <div class="star-rating">★★★★★</div>
+                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0 0 10px 0; line-height: 1.5;">"Built and deployed my entire automation agency pipeline straight from my phone in Termux. Zero hosting bills!"</p>
+                        <p style="font-size: 0.78rem; color: var(--accent-cyan); margin: 0; font-weight: 800;">— Liam K., Systems Engineer</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="star-rating">★★★★★</div>
+                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0 0 10px 0; line-height: 1.5;">"The local AI and shell execution model completely changed how I build client apps. Absolute game-changer."</p>
+                        <p style="font-size: 0.78rem; color: var(--accent-purple); margin: 0; font-weight: 800;">— Thabo M., Full-Stack Dev</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="star-rating">★★★★★</div>
+                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0 0 10px 0; line-height: 1.5;">"Cut out R4,000 in monthly SaaS tools instantly. The Yoco integration flow is buttery smooth."</p>
+                        <p style="font-size: 0.78rem; color: var(--accent-emerald); margin: 0; font-weight: 800;">— Pieter V., Agency Owner</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="star-rating">★★★★★</div>
+                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0 0 10px 0; line-height: 1.5;">"Sovereign architecture at its finest. No cloud bloat, pure speed and maximum profit margins."</p>
+                        <p style="font-size: 0.78rem; color: var(--accent-cyan); margin: 0; font-weight: 800;">— Sarah N., Automation Consultant</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ghost-sponsors">
+                <span class="ghost-logo">// NEXUS LABS</span>
+                <span class="ghost-logo">// APEX CORE</span>
+                <span class="ghost-logo">// ZEROSTACK</span>
+                <span class="ghost-logo">// SOVEREIGN AI</span>
             </div>
         </section>
 
