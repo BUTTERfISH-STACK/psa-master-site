@@ -1,0 +1,78 @@
+:root {
+  --bg-slate: #0b0f19;
+  --amber-accent: #f59e0b;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --text-main: #f3f4f6;
+  --text-muted: #9ca3af;
+  --font-mono: 'JetBrains Mono', 'Courier Prime', monospace;
+}
+
+body {
+  background-color: var(--bg-slate);
+  color: var(--text-main);
+  font-family: var(--font-mono);
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.psa-glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 40px;
+  width: 480px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+.system-badge {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--amber-accent);
+  margin-bottom: 16px;
+  display: inline-block;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.watermark {
+  position: absolute;
+  top: 30px;
+  right: 35px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.quote-block {
+  margin-top: 10px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.attribution {
+  margin-top: 32px;
+  border-top: 1px solid var(--glass-border);
+  padding-top: 16px;
+}
+
+.attribution h3 {
+  margin: 0;
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+}
+
+.attribution p {
+  margin: 4px 0 0 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSA™ Game Factory</title>
+    <style>
+        body { background: #000; color: #fff; font-family: sans-serif; padding: 20px; }
+        .factory-box { max-width: 500px; margin: 0 auto; }
+        textarea { width: 100%; height: 150px; background: #111; color: #0f0; border: 1px solid #333; padding: 15px; border-radius: 10px; resize: none; }
+        button { width: 100%; padding: 20px; background: #00d2ff; border: none; border-radius: 10px; font-weight: bold; margin-top: 10px; cursor: pointer; }
+        #status { margin-top: 20px; font-size: 0.9rem; color: #888; }
+    </style>
+</head>
+<body>
+    <div class="factory-box">
+        <h1>PSA™ Game Factory</h1>
+        <p>Describe your game:</p>
+        <textarea id="prompt" placeholder="e.g., A mobile game where a circle avoids falling blocks..."></textarea>
+        <button onclick="buildGame()">BUILD GAME</button>
+        <div id="status">Ready to compile...</div>
+    </div>
+
+    <script>
+        async function buildGame() {
+            const prompt = document.getElementById('prompt').value;
+            const status = document.getElementById('status');
+            status.innerText = "Compiling... Please wait.";
+            
+            const r = await fetch('/api/build', { 
+                method: 'POST', 
+                body: JSON.stringify({prompt}), 
+                headers: {'Content-Type': 'application/json'}
+            });
+            const data = await r.json();
+            status.innerText = data.message;
+        }
+    </script>
+</body>
+</html>

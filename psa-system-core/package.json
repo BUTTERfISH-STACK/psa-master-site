@@ -1,0 +1,11 @@
+{
+  "name": "psa-system-core",
+  "version": "1.0.0",
+  "description": "Sovereign local-first automation and telemetry dashboard under the PSA framework.",
+  "author": "Rean V Aswegen",
+  "private": true,
+  "scripts": {
+    "dev": "npx vite --host",
+    "build": "npx vite build"
+  }
+}
