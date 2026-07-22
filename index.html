@@ -219,6 +219,37 @@
             cursor: pointer;
         }
 
+        .checkout-box {
+            background: linear-gradient(135deg, rgba(20, 32, 60, 0.9) 0%, rgba(8, 14, 30, 0.95) 100%);
+            border: 1px solid rgba(52, 211, 153, 0.4);
+            border-radius: 18px;
+            padding: 24px 20px;
+            margin-top: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .checkout-badge {
+            display: inline-block;
+            background: rgba(52, 211, 153, 0.2);
+            color: var(--accent-emerald);
+            border: 1px solid rgba(52, 211, 153, 0.5);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .price-display {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 12px;
+            margin: 16px 0;
+        }
+
         .cta-btn {
             display: block;
             width: 100%;
@@ -376,11 +407,22 @@ termux@psa-node:~$ psa --status
 
         <section style="text-align: center;">
             <h3 class="majestic-section-title">🛒 Instant Access & Checkout</h3>
-            <h2 style="font-size: 1.4rem; margin: 8px 0; font-weight: 900;">Get PSA™ First Light Guide</h2>
-            <p style="font-size: 0.9rem; color: #94a3b8; margin: 0 0 14px 0;">One-time payment • Lifetime access • Immediate Digital Delivery</p>
-            <p style="margin: 16px 0;"><span style="text-decoration: line-through; color: #64748b; font-size: 1.15rem;">R750</span> <strong style="font-size: 2.3rem; color: var(--accent-emerald); margin-left: 12px;">R299</strong> <span style="font-size: 0.9rem; color: #94a3b8; font-weight: 700;">ZAR</span></p>
-            <a href="https://pay.yoco.com/r/4qDrvx" target="_blank" rel="noopener noreferrer" class="cta-btn">🔒 Pay Securely via Yoco</a>
-            <p style="font-size: 0.8rem; margin-top: 14px; color: #94a3b8; font-weight: 600;">Encrypted, instant card processing powered by Yoco</p>
+            
+            <div class="checkout-box">
+                <div class="checkout-badge">Instant Digital Delivery</div>
+                <h2 style="font-size: 1.4rem; margin: 6px 0; font-weight: 900; color: #f8fafc;">Get PSA™ First Light Guide</h2>
+                <p style="font-size: 0.85rem; color: #94a3b8; margin: 0 0 12px 0;">One-time payment • Lifetime access</p>
+                
+                <div class="price-display">
+                    <span style="text-decoration: line-through; color: #64748b; font-size: 1.1rem;">R750</span>
+                    <strong style="font-size: 2.4rem; color: var(--accent-emerald); text-shadow: 0 0 20px rgba(52,211,153,0.3);">R299</strong>
+                    <span style="font-size: 0.85rem; color: #94a3b8; font-weight: 700;">ZAR</span>
+                </div>
+
+                <a href="https://pay.yoco.com/r/4qDrvx" target="_blank" rel="noopener noreferrer" class="cta-btn">🔒 Pay Securely via Yoco</a>
+                
+                <p style="font-size: 0.78rem; margin-top: 14px; color: #94a3b8; font-weight: 600; letter-spacing: 0.3px;">Encrypted, instant card processing powered by Yoco</p>
+            </div>
         </section>
 
         <footer>
@@ -394,10 +436,7 @@ termux@psa-node:~$ psa --status
         function updateMetrics(val) {
             const count = parseInt(val);
             
-            // Update slider label
             document.getElementById('slider-val-label').textContent = count + (count === 1 ? ' Client' : ' Clients');
-            
-            // Update metric cards
             document.getElementById('val-clients').textContent = count + (count === 1 ? ' Client' : ' Clients');
             
             const saasTotal = count * 3500;
@@ -406,7 +445,6 @@ termux@psa-node:~$ psa --status
             const capitalTotal = saasTotal * 12;
             document.getElementById('val-capital').textContent = 'R' + capitalTotal.toLocaleString();
             
-            // Dynamic margin calculation climbing towards 99.9%
             const margin = Math.min(99.9, 98.5 + (count * 0.025)).toFixed(1);
             document.getElementById('val-margin').textContent = margin + '%';
         }
