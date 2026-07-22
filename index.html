@@ -39,9 +39,9 @@
         }
 
         @keyframes ghostPulse {
-            0% { opacity: 0.4; filter: grayscale(100%) brightness(0.7); }
-            50% { opacity: 0.8; filter: grayscale(100%) brightness(1); }
-            100% { opacity: 0.4; filter: grayscale(100%) brightness(0.7); }
+            0% { opacity: 0.5; filter: grayscale(100%) brightness(0.8); transform: scale(1); }
+            50% { opacity: 1; filter: grayscale(0%) brightness(1.2); transform: scale(1.05); text-shadow: 0 0 12px rgba(56, 189, 248, 0.5); }
+            100% { opacity: 0.5; filter: grayscale(100%) brightness(0.8); transform: scale(1); }
         }
 
         * {
@@ -301,21 +301,21 @@
             opacity: 0.8;
         }
 
-        /* Running Loop Testimonial Styles */
+        /* Enhanced Running Loop Testimonial Styles */
         .marquee-wrapper {
             overflow: hidden;
             width: 100%;
             position: relative;
-            margin-top: 16px;
-            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            margin-top: 18px;
+            mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
         }
 
         .marquee-track {
             display: flex;
-            gap: 16px;
+            gap: 18px;
             width: max-content;
-            animation: scrollLoop 30s linear infinite;
+            animation: scrollLoop 28s linear infinite;
         }
 
         .marquee-track:hover {
@@ -323,48 +323,119 @@
         }
 
         .testimonial-card {
-            background: rgba(1, 4, 10, 0.85);
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            border-radius: 16px;
-            padding: 20px;
-            width: 300px;
+            background: linear-gradient(145deg, rgba(10, 18, 38, 0.95) 0%, rgba(1, 4, 10, 0.98) 100%);
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            border-radius: 18px;
+            padding: 22px;
+            width: 320px;
             flex-shrink: 0;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             transform: translateZ(0);
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            border-color: rgba(52, 211, 153, 0.6);
+            transform: translateY(-3px) translateZ(0);
         }
 
         .star-rating {
             color: #facc15;
-            font-size: 0.9rem;
-            margin-bottom: 8px;
-            letter-spacing: 2px;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px rgba(250, 204, 21, 0.4);
         }
 
-        /* Ghost Sponsors Ticker Styles */
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 12px;
+        }
+
+        .client-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 900;
+            color: #02040a;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            flex-shrink: 0;
+        }
+
+        /* Enhanced Ghost Sponsors Ticker Styles with Icons/Logos */
+        .ghost-sponsors-container {
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px dashed rgba(56, 189, 248, 0.25);
+            text-align: center;
+        }
+
+        .ghost-sponsors-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #94a3b8;
+            margin-bottom: 14px;
+            font-weight: 800;
+        }
+
         .ghost-sponsors {
             display: flex;
             justify-content: space-around;
             align-items: center;
-            gap: 24px;
-            margin-top: 20px;
-            padding-top: 16px;
-            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+            gap: 16px;
             flex-wrap: wrap;
         }
 
-        .ghost-logo {
-            font-family: monospace;
-            font-size: 0.95rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: #94a3b8;
+        .ghost-logo-card {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(1, 4, 10, 0.6);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            padding: 8px 14px;
+            border-radius: 12px;
             animation: ghostPulse 4s ease-in-out infinite;
+            transition: border-color 0.3s ease;
+        }
+
+        .ghost-logo-card:hover {
+            border-color: rgba(56, 189, 248, 0.7);
+        }
+
+        .ghost-logo-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+        }
+
+        .ghost-logo-text {
+            font-family: monospace;
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            color: #cbd5e1;
             text-transform: uppercase;
         }
 
-        .ghost-logo:nth-child(2) { animation-delay: 1s; }
-        .ghost-logo:nth-child(3) { animation-delay: 2s; }
-        .ghost-logo:nth-child(4) { animation-delay: 3s; }
+        .ghost-logo-card:nth-child(1) { animation-delay: 0s; }
+        .ghost-logo-card:nth-child(2) { animation-delay: 1s; }
+        .ghost-logo-card:nth-child(3) { animation-delay: 2s; }
+        .ghost-logo-card:nth-child(4) { animation-delay: 3s; }
 
         ul {
             padding-left: 20px;
@@ -526,54 +597,117 @@ termux@psa-node:~$ psa --status
                     <!-- Original Set -->
                     <div class="testimonial-card">
                         <div class="star-rating">★★★★★</div>
-                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0 0 10px 0; line-height: 1.5;">"Built and deployed my entire automation agency pipeline straight from my phone in Termux. Zero hosting bills!"</p>
-                        <p style="font-size: 0.78rem; color: var(--accent-cyan); margin: 0; font-weight: 800;">— Liam K., Systems Engineer</p>
+                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0 0 12px 0; line-height: 1.5;">"Built and deployed my entire automation agency pipeline straight from my phone in Termux. Zero hosting bills!"</p>
+                        <div class="client-info">
+                            <div class="client-avatar">LK</div>
+                            <div>
+                                <p style="font-size: 0.82rem; color: var(--accent-cyan); margin: 0; font-weight: 800;">Liam K.</p>
+                                <p style="font-size: 0.72rem; color: #94a3b8; margin: 0;">Systems Engineer</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="testimonial-card">
                         <div class="star-rating">★★★★★</div>
-                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0 0 10px 0; line-height: 1.5;">"The local AI and shell execution model completely changed how I build client apps. Absolute game-changer."</p>
-                        <p style="font-size: 0.78rem; color: var(--accent-purple); margin: 0; font-weight: 800;">— Thabo M., Full-Stack Dev</p>
+                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0 0 12px 0; line-height: 1.5;">"The local AI and shell execution model completely changed how I build client apps. Absolute game-changer."</p>
+                        <div class="client-info">
+                            <div class="client-avatar" style="background: linear-gradient(135deg, var(--accent-purple), var(--accent-emerald));">TM</div>
+                            <div>
+                                <p style="font-size: 0.82rem; color: var(--accent-purple); margin: 0; font-weight: 800;">Thabo M.</p>
+                                <p style="font-size: 0.72rem; color: #94a3b8; margin: 0;">Full-Stack Dev</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="testimonial-card">
                         <div class="star-rating">★★★★★</div>
-                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0 0 10px 0; line-height: 1.5;">"Cut out R4,000 in monthly SaaS tools instantly. The Yoco integration flow is buttery smooth."</p>
-                        <p style="font-size: 0.78rem; color: var(--accent-emerald); margin: 0; font-weight: 800;">— Pieter V., Agency Owner</p>
+                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0 0 12px 0; line-height: 1.5;">"Cut out R4,000 in monthly SaaS tools instantly. The Yoco integration flow is buttery smooth."</p>
+                        <div class="client-info">
+                            <div class="client-avatar" style="background: linear-gradient(135deg, var(--accent-emerald), var(--accent-cyan));">PV</div>
+                            <div>
+                                <p style="font-size: 0.82rem; color: var(--accent-emerald); margin: 0; font-weight: 800;">Pieter V.</p>
+                                <p style="font-size: 0.72rem; color: #94a3b8; margin: 0;">Agency Owner</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="testimonial-card">
                         <div class="star-rating">★★★★★</div>
-                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0 0 10px 0; line-height: 1.5;">"Sovereign architecture at its finest. No cloud bloat, pure speed and maximum profit margins."</p>
-                        <p style="font-size: 0.78rem; color: var(--accent-cyan); margin: 0; font-weight: 800;">— Sarah N., Automation Consultant</p>
+                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0 0 12px 0; line-height: 1.5;">"Sovereign architecture at its finest. No cloud bloat, pure speed and maximum profit margins."</p>
+                        <div class="client-info">
+                            <div class="client-avatar" style="background: linear-gradient(135deg, #f43f5e, var(--accent-purple));">SN</div>
+                            <div>
+                                <p style="font-size: 0.82rem; color: var(--accent-cyan); margin: 0; font-weight: 800;">Sarah N.</p>
+                                <p style="font-size: 0.72rem; color: #94a3b8; margin: 0;">Automation Consultant</p>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Duplicated Set for Infinite Loop Seamlessness -->
                     <div class="testimonial-card">
                         <div class="star-rating">★★★★★</div>
-                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0 0 10px 0; line-height: 1.5;">"Built and deployed my entire automation agency pipeline straight from my phone in Termux. Zero hosting bills!"</p>
-                        <p style="font-size: 0.78rem; color: var(--accent-cyan); margin: 0; font-weight: 800;">— Liam K., Systems Engineer</p>
+                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0 0 12px 0; line-height: 1.5;">"Built and deployed my entire automation agency pipeline straight from my phone in Termux. Zero hosting bills!"</p>
+                        <div class="client-info">
+                            <div class="client-avatar">LK</div>
+                            <div>
+                                <p style="font-size: 0.82rem; color: var(--accent-cyan); margin: 0; font-weight: 800;">Liam K.</p>
+                                <p style="font-size: 0.72rem; color: #94a3b8; margin: 0;">Systems Engineer</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="testimonial-card">
                         <div class="star-rating">★★★★★</div>
-                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0 0 10px 0; line-height: 1.5;">"The local AI and shell execution model completely changed how I build client apps. Absolute game-changer."</p>
-                        <p style="font-size: 0.78rem; color: var(--accent-purple); margin: 0; font-weight: 800;">— Thabo M., Full-Stack Dev</p>
+                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0 0 12px 0; line-height: 1.5;">"The local AI and shell execution model completely changed how I build client apps. Absolute game-changer."</p>
+                        <div class="client-info">
+                            <div class="client-avatar" style="background: linear-gradient(135deg, var(--accent-purple), var(--accent-emerald));">TM</div>
+                            <div>
+                                <p style="font-size: 0.82rem; color: var(--accent-purple); margin: 0; font-weight: 800;">Thabo M.</p>
+                                <p style="font-size: 0.72rem; color: #94a3b8; margin: 0;">Full-Stack Dev</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="testimonial-card">
                         <div class="star-rating">★★★★★</div>
-                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0 0 10px 0; line-height: 1.5;">"Cut out R4,000 in monthly SaaS tools instantly. The Yoco integration flow is buttery smooth."</p>
-                        <p style="font-size: 0.78rem; color: var(--accent-emerald); margin: 0; font-weight: 800;">— Pieter V., Agency Owner</p>
+                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0 0 12px 0; line-height: 1.5;">"Cut out R4,000 in monthly SaaS tools instantly. The Yoco integration flow is buttery smooth."</p>
+                        <div class="client-info">
+                            <div class="client-avatar" style="background: linear-gradient(135deg, var(--accent-emerald), var(--accent-cyan));">PV</div>
+                            <div>
+                                <p style="font-size: 0.82rem; color: var(--accent-emerald); margin: 0; font-weight: 800;">Pieter V.</p>
+                                <p style="font-size: 0.72rem; color: #94a3b8; margin: 0;">Agency Owner</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="testimonial-card">
                         <div class="star-rating">★★★★★</div>
-                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0 0 10px 0; line-height: 1.5;">"Sovereign architecture at its finest. No cloud bloat, pure speed and maximum profit margins."</p>
-                        <p style="font-size: 0.78rem; color: var(--accent-cyan); margin: 0; font-weight: 800;">— Sarah N., Automation Consultant</p>
+                        <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0 0 12px 0; line-height: 1.5;">"Sovereign architecture at its finest. No cloud bloat, pure speed and maximum profit margins."</p>
+                        <div class="client-info">
+                            <div class="client-avatar" style="background: linear-gradient(135deg, #f43f5e, var(--accent-purple));">SN</div>
+                            <div>
+                                <p style="font-size: 0.82rem; color: var(--accent-cyan); margin: 0; font-weight: 800;">Sarah N.</p>
+                                <p style="font-size: 0.72rem; color: #94a3b8; margin: 0;">Automation Consultant</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="ghost-sponsors">
-                <span class="ghost-logo">// NEXUS LABS</span>
-                <span class="ghost-logo">// APEX CORE</span>
-                <span class="ghost-logo">// ZEROSTACK</span>
-                <span class="ghost-logo">// SOVEREIGN AI</span>
+            <div class="ghost-sponsors-container">
+                <div class="ghost-sponsors-label">Trusted by operators across decentralized ecosystems</div>
+                <div class="ghost-sponsors">
+                    <div class="ghost-logo-card">
+                        <span class="ghost-logo-icon">💠</span>
+                        <span class="ghost-logo-text">NEXUS LABS</span>
+                    </div>
+                    <div class="ghost-logo-card">
+                        <span class="ghost-logo-icon">⚡</span>
+                        <span class="ghost-logo-text">APEX CORE</span>
+                    </div>
+                    <div class="ghost-logo-card">
+                        <span class="ghost-logo-icon">🛡️</span>
+                        <span class="ghost-logo-text">ZEROSTACK</span>
+                    </div>
+                    <div class="ghost-logo-card">
+                        <span class="ghost-logo-icon">🔮</span>
+                        <span class="ghost-logo-text">SOVEREIGN AI</span>
+                    </div>
+                </div>
             </div>
         </section>
 
