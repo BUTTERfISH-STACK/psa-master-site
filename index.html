@@ -196,6 +196,29 @@
             background: rgba(56, 189, 248, 0.2);
         }
 
+        .slider-container {
+            margin: 16px 0 8px 0;
+            background: rgba(1, 4, 10, 0.6);
+            padding: 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(56, 189, 248, 0.25);
+        }
+
+        .slider-container label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #94a3b8;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .slider-container input[type="range"] {
+            width: 100%;
+            accent-color: var(--accent-cyan);
+            cursor: pointer;
+        }
+
         .cta-btn {
             display: block;
             width: 100%;
@@ -320,27 +343,32 @@ termux@psa-node:~$ psa --status
 
         <section>
             <h3 class="majestic-section-title">📊 Interactive PSA™ Metrics Engine</h3>
-            <p style="font-size: 0.88rem; color: #94a3b8; margin: 0 0 14px 0;">Tap cards to cycle live performance parameters:</p>
+            <p style="font-size: 0.88rem; color: #94a3b8; margin: 0 0 10px 0;">Slide to scale active client deployments and watch live metrics compute:</p>
+            
+            <div class="slider-container">
+                <label for="client-slider">
+                    <span>Active Client Deployments</span>
+                    <span id="slider-val-label" style="color: var(--accent-cyan);">1 Client</span>
+                </label>
+                <input type="range" id="client-slider" min="1" max="50" value="1" oninput="updateMetrics(this.value)">
+            </div>
+
             <div class="grid grid-2">
-                <div class="card interactive-card" onclick="cycleMetric('clients', this)">
+                <div class="card">
                     <p style="margin: 0; font-size: 0.85rem; color: #94a3b8; font-weight: 700;">Active Client Systems</p>
                     <div class="metrics-val" id="val-clients">1 Client</div>
-                    <div class="tap-hint">[Tap to scale]</div>
                 </div>
-                <div class="card interactive-card" onclick="cycleMetric('saas', this)">
+                <div class="card">
                     <p style="margin: 0; font-size: 0.85rem; color: #94a3b8; font-weight: 700;">Monthly SaaS Saved</p>
                     <div class="metrics-val" id="val-saas">R3,500</div>
-                    <div class="tap-hint">[Tap to boost]</div>
                 </div>
-                <div class="card interactive-card" onclick="cycleMetric('capital', this)">
+                <div class="card">
                     <p style="margin: 0; font-size: 0.85rem; color: #94a3b8; font-weight: 700;">Annual Capital Retained</p>
                     <div class="metrics-val" id="val-capital">R42,000</div>
-                    <div class="tap-hint">[Tap to scale]</div>
                 </div>
-                <div class="card interactive-card" onclick="cycleMetric('margin', this)">
+                <div class="card">
                     <p style="margin: 0; font-size: 0.85rem; color: #94a3b8; font-weight: 700;">Agency Profit Margin</p>
                     <div class="metrics-val" id="val-margin">98.5%</div>
-                    <div class="tap-hint">[Tap to peak]</div>
                 </div>
             </div>
             <p style="margin-top: 18px; font-size: 0.92rem; text-align: center; font-weight: 700;">PSA™ Efficiency Rating: <strong style="color: var(--accent-emerald);">98.5% Optimal</strong></p>
@@ -363,18 +391,24 @@ termux@psa-node:~$ psa --status
     </div>
 
     <script>
-        const states = {
-            clients: ["1 Client", "5 Clients", "12 Clients", "25+ Enterprise"],
-            saas: ["R3,500", "R17,500", "R42,000", "R87,500"],
-            capital: ["R42,000", "R210,000", "R504,000", "R1,050,000"],
-            margin: ["98.5%", "99.1%", "99.8%", "100% Sovereign"]
-        };
-
-        const indices = { clients: 0, saas: 0, capital: 0, margin: 0 };
-
-        function cycleMetric(type, element) {
-            indices[type] = (indices[type] + 1) % states[type].length;
-            document.getElementById('val-' + type).textContent = states[type][indices[type]];
+        function updateMetrics(val) {
+            const count = parseInt(val);
+            
+            // Update slider label
+            document.getElementById('slider-val-label').textContent = count + (count === 1 ? ' Client' : ' Clients');
+            
+            // Update metric cards
+            document.getElementById('val-clients').textContent = count + (count === 1 ? ' Client' : ' Clients');
+            
+            const saasTotal = count * 3500;
+            document.getElementById('val-saas').textContent = 'R' + saasTotal.toLocaleString();
+            
+            const capitalTotal = saasTotal * 12;
+            document.getElementById('val-capital').textContent = 'R' + capitalTotal.toLocaleString();
+            
+            // Dynamic margin calculation climbing towards 99.9%
+            const margin = Math.min(99.9, 98.5 + (count * 0.025)).toFixed(1);
+            document.getElementById('val-margin').textContent = margin + '%';
         }
 
         function runTerminalCommand() {
