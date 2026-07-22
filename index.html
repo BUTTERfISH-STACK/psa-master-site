@@ -6,10 +6,10 @@
     <title>PSA™ // Pocket State Architecture</title>
     <style>
         @keyframes softBackground {
-            0% { background-color: #090d16; }
-            33% { background-color: #120d1a; }
-            66% { background-color: #0d1614; }
-            100% { background-color: #090d16; }
+            0% { background-color: #030712; }
+            33% { background-color: #0c0a1d; }
+            66% { background-color: #051614; }
+            100% { background-color: #030712; }
         }
 
         @keyframes softText {
@@ -19,80 +19,169 @@
             100% { color: #38bdf8; }
         }
 
+        @keyframes borderGlow {
+            0% { border-color: rgba(56, 189, 248, 0.3); box-shadow: 0 0 15px rgba(56, 189, 248, 0.05); }
+            33% { border-color: rgba(192, 132, 252, 0.3); box-shadow: 0 0 20px rgba(192, 132, 252, 0.1); }
+            66% { border-color: rgba(52, 211, 153, 0.3); box-shadow: 0 0 15px rgba(52, 211, 153, 0.05); }
+            100% { border-color: rgba(56, 189, 248, 0.3); box-shadow: 0 0 15px rgba(56, 189, 248, 0.05); }
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
         body {
             margin: 0;
             padding: 0;
-            background-color: #090d16;
-            color: #e2e8f0;
-            font-family: monospace, sans-serif;
-            animation: softBackground 16s ease-in-out infinite;
-            line-height: 1.6;
+            background-color: #030712;
+            color: #f1f5f9;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace, sans-serif;
+            animation: softBackground 18s ease-in-out infinite;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
         }
 
         .container {
-            max-width: 900px;
+            width: 100%;
+            max-width: 480px;
             margin: 0 auto;
-            padding: 2rem 1rem;
+            padding: 16px;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                max-width: 640px;
+                padding: 24px;
+            }
         }
 
         header, section, footer {
-            background: rgba(15, 23, 42, 0.7);
-            border: 1px solid rgba(56, 189, 248, 0.2);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            backdrop-filter: blur(8px);
+            background: rgba(10, 15, 30, 0.85);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            animation: borderGlow 18s ease-in-out infinite;
         }
 
         h1, h2, h3, .brand-title {
-            animation: softText 16s ease-in-out infinite;
+            animation: softText 18s ease-in-out infinite;
+            font-weight: 800;
         }
 
-        pre {
-            background: #020617;
+        .status-badge {
+            display: inline-block;
+            background: rgba(52, 211, 153, 0.1);
+            color: #34d399;
+            border: 1px solid rgba(52, 211, 153, 0.3);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .terminal-box {
+            background: #02040a;
             border: 1px solid #1e293b;
-            padding: 1rem;
-            border-radius: 6px;
-            overflow-x: auto;
+            border-radius: 8px;
+            padding: 14px;
+            font-family: monospace;
+            font-size: 0.82rem;
             color: #38bdf8;
-            font-size: 0.9rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+            margin: 12px 0;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        @media (min-width: 480px) {
+            .grid-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         .card {
-            background: #0b1329;
+            background: rgba(15, 23, 42, 0.6);
             border: 1px solid #1e293b;
-            padding: 1rem;
-            border-radius: 6px;
+            padding: 16px;
+            border-radius: 8px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
         }
 
-        .cta-btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #38bdf8, #818cf8);
-            color: #0f172a;
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
-            font-weight: bold;
-            text-decoration: none;
-            margin-top: 1rem;
+        .card:active {
+            transform: scale(0.98);
+        }
+
+        .interactive-metric {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .interactive-metric:hover {
+            border-color: rgba(56, 189, 248, 0.5);
+            background: rgba(15, 23, 42, 0.9);
         }
 
         .metrics-val {
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-size: 1.4rem;
+            font-weight: 800;
             color: #34d399;
+            margin-top: 4px;
+        }
+
+        .cta-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background: linear-gradient(135deg, #38bdf8, #818cf8);
+            color: #030712;
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-weight: 800;
+            text-decoration: none;
+            font-size: 1rem;
+            margin-top: 16px;
+            box-shadow: 0 4px 14px rgba(56, 189, 248, 0.3);
+            transition: opacity 0.2s ease;
+        }
+
+        .cta-btn:active {
+            opacity: 0.85;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+            color: #cbd5e1;
+        }
+
+        li {
+            margin-bottom: 6px;
         }
 
         footer {
             text-align: center;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #94a3b8;
+        }
+
+        .tap-hint {
+            font-size: 0.7rem;
+            color: #64748b;
+            margin-top: 4px;
+            font-style: italic;
         }
     </style>
 </head>
@@ -100,37 +189,33 @@
     <div class="container">
         
         <header>
-            <p>POSIX CORE: ACTIVE<br>
-            SYS: SOVEREIGN<br>
-            LATENCY: 0.4ms<br>
-            SaaS COST: R0.00/mo</p>
-            <h1 class="brand-title">Pocket State Architecture (PSA™)</h1>
-            <p><strong>Zero Cloud. Zero SaaS. Total System Control.</strong></p>
-            <p>Deploy high-margin sales pipelines, offline-first client engines, and POSIX shell routines directly from your mobile terminal.</p>
+            <div class="status-badge">● LIVE MOBILE NODE: ACTIVE</div>
+            <p style="font-size: 0.85rem; color: #94a3b8; margin: 0 0 8px 0;">
+                SYS: SOVEREIGN | LATENCY: 0.4ms | SaaS COST: R0.00/mo
+            </p>
+            <h1 class="brand-title" style="font-size: 1.75rem; margin: 0 0 10px 0;">Pocket State Architecture (PSA™)</h1>
+            <p style="font-size: 0.95rem; color: #e2e8f0; margin: 0 0 12px 0;"><strong>Zero Cloud. Zero SaaS. Total System Control.</strong></p>
+            <p style="font-size: 0.9rem; color: #cbd5e1; margin: 0;">Deploy high-margin sales pipelines, offline-first client engines, and POSIX shell routines directly from your mobile terminal.</p>
         </header>
 
         <section>
-            <h3>💻 Terminal Sandbox</h3>
-            <pre>termux@psa-node:~ (ARM64 POSIX)
+            <h3 style="margin-top: 0; font-size: 1.1rem;">💻 Terminal Sandbox</h3>
+            <div class="terminal-box">termux@psa-node:~ (ARM64 POSIX)
 termux@psa-node:~$ psa --init
 
 [✓] PSA Master Engine v5.2 Initialized
 [i] Architecture: Linux ARM64 / POSIX Shell
 [i] Subsystems: Lead Pipeline [ACTIVE] | Local Engine [ONLINE] | SaaS Tax [0%]
-------------------------------------------------------------------
-Execute shell diagnostic commands below to inspect core architecture:
-termux@psa-node:~$ 
-❯ psa --status
-❯ psa --guide
-❯ psa --pricing
-⚡ psa --audit</pre>
+--------------------------------------------------
+termux@psa-node:~$ psa --status
+[✓] Status: 100% Sovereign Mobile Execution</div>
         </section>
 
         <section>
-            <h3>📖 Master Guide Spotlight</h3>
-            <h2>PSA™ VOLUME 1: FIRST LIGHT: SALES GUIDE</h2>
-            <p><strong>BY REAN V ASWEGEN</strong></p>
-            <p>The blueprint for building automated sales pipelines, high-converting lead extraction routines, and offline client systems directly from Unix shell environments.</p>
+            <span class="status-badge" style="background: rgba(192, 132, 252, 0.1); color: #c084fc; border-color: rgba(192, 132, 252, 0.3);">MASTER GUIDE SPOTLIGHT</span>
+            <h2 style="font-size: 1.35rem; margin: 8px 0;">PSA™ VOLUME 1: FIRST LIGHT SALES GUIDE</h2>
+            <p style="font-size: 0.85rem; color: #94a3b8; margin: 0 0 10px 0;"><strong>BY REAN V ASWEGEN</strong></p>
+            <p style="font-size: 0.9rem; color: #cbd5e1;">The ultimate blueprint for building automated sales pipelines and offline client systems directly from Unix shell environments.</p>
             <ul>
                 <li><strong>Mobile Shell Setup:</strong> Zero-dependency terminal workflows.</li>
                 <li><strong>R15,000+ Agency Model:</strong> High-margin, $0/mo hosting solutions.</li>
@@ -139,64 +224,90 @@ termux@psa-node:~$
         </section>
 
         <section>
-            <h3>⚡ Core System Advantages</h3>
-            <div class="grid">
+            <h3 style="margin-top: 0; font-size: 1.1rem;">⚡ Core System Advantages</h3>
+            <div class="grid grid-2">
                 <div class="card">
-                    <h4>📱 Mobile Shell Execution</h4>
-                    <p>Build, control, and update entire client business infrastructures directly inside Termux or VS Code.</p>
+                    <h4 style="margin: 0 0 6px 0; font-size: 0.95rem;">📱 Mobile Shell Execution</h4>
+                    <p style="margin: 0; font-size: 0.85rem; color: #94a3b8;">Build and update entire client architectures inside Termux.</p>
                 </div>
                 <div class="card">
-                    <h4>💰 Zero SaaS Subscriptions</h4>
-                    <p>Eliminate monthly recurring software fees for CRMs, email tools, and webhook connectors.</p>
+                    <h4 style="margin: 0 0 6px 0; font-size: 0.95rem;">💰 Zero SaaS Subscriptions</h4>
+                    <p style="margin: 0; font-size: 0.85rem; color: #94a3b8;">Eliminate monthly fees for CRMs and webhook tools.</p>
                 </div>
                 <div class="card">
-                    <h4>🔒 Total Data Sovereignty</h4>
-                    <p>100% private, local-first data architecture. Your leads and customer records never leak.</p>
+                    <h4 style="margin: 0 0 6px 0; font-size: 0.95rem;">🔒 Total Data Sovereignty</h4>
+                    <p style="margin: 0; font-size: 0.85rem; color: #94a3b8;">100% private, local-first data architecture.</p>
                 </div>
                 <div class="card">
-                    <h4>🚀 High Profit Margins</h4>
-                    <p>Deliver custom automated business systems to local companies while retaining maximum profit.</p>
+                    <h4 style="margin: 0 0 6px 0; font-size: 0.95rem;">🚀 High Profit Margins</h4>
+                    <p style="margin: 0; font-size: 0.85rem; color: #94a3b8;">Deliver custom automation while keeping 100% profit.</p>
                 </div>
             </div>
         </section>
 
         <section>
-            <h3>📊 Interactive PSA™ Metrics Engine</h3>
-            <div class="grid">
-                <div class="card">
-                    <p>Active Client Systems Managed</p>
-                    <div class="metrics-val">1 Client</div>
+            <h3 style="margin-top: 0; font-size: 1.1rem;">📊 Interactive PSA™ Metrics Engine</h3>
+            <p style="font-size: 0.8rem; color: #94a3b8; margin: 0 0 12px 0;">Tap cards to cycle live performance parameters:</p>
+            <div class="grid grid-2">
+                <div class="card interactive-metric" onclick="cycleMetric('clients', this)">
+                    <p style="margin: 0; font-size: 0.8rem; color: #94a3b8;">Active Client Systems</p>
+                    <div class="metrics-val" id="val-clients">1 Client</div>
+                    <div class="tap-hint">[Tap to scale]</div>
                 </div>
-                <div class="card">
-                    <p>Monthly SaaS Saved</p>
-                    <div class="metrics-val">R3,500</div>
+                <div class="card interactive-metric" onclick="cycleMetric('saas', this)">
+                    <p style="margin: 0; font-size: 0.8rem; color: #94a3b8;">Monthly SaaS Saved</p>
+                    <div class="metrics-val" id="val-saas">R3,500</div>
+                    <div class="tap-hint">[Tap to boost]</div>
                 </div>
-                <div class="card">
-                    <p>Annual Capital Retained</p>
-                    <div class="metrics-val">R42,000</div>
+                <div class="card interactive-metric" onclick="cycleMetric('capital', this)">
+                    <p style="margin: 0; font-size: 0.8rem; color: #94a3b8;">Annual Capital Retained</p>
+                    <div class="metrics-val" id="val-capital">R42,000</div>
+                    <div class="tap-hint">[Tap to scale]</div>
                 </div>
-                <div class="card">
-                    <p>Agency Profit Margin</p>
-                    <div class="metrics-val">98.5%</div>
+                <div class="card interactive-metric" onclick="cycleMetric('margin', this)">
+                    <p style="margin: 0; font-size: 0.8rem; color: #94a3b8;">Agency Profit Margin</p>
+                    <div class="metrics-val" id="val-margin">98.5%</div>
+                    <div class="tap-hint">[Tap to peak]</div>
                 </div>
             </div>
-            <p style="margin-top: 1rem;">PSA™ System Efficiency Rating: <strong>98.5% Optimal</strong></p>
+            <p style="margin-top: 14px; font-size: 0.85rem; text-align: center;">PSA™ Efficiency Rating: <strong style="color: #34d399;">98.5% Optimal</strong></p>
         </section>
 
         <section style="text-align: center;">
-            <h3>🛒 Instant Access & Checkout</h3>
-            <h2>Get PSA™ First Light Guide</h2>
-            <p>One-time payment • Lifetime access • Immediate Digital Access</p>
-            <p><span style="text-decoration: line-through; color: #94a3b8;">R750</span> <strong style="font-size: 1.8rem; color: #34d399;">R299</strong> ZAR</p>
+            <h3 style="margin-top: 0; font-size: 1.1rem;">🛒 Instant Access & Checkout</h3>
+            <h2 style="font-size: 1.25rem; margin: 6px 0;">Get PSA™ First Light Guide</h2>
+            <p style="font-size: 0.85rem; color: #94a3b8; margin: 0 0 10px 0;">One-time payment • Lifetime access • Immediate Digital Delivery</p>
+            <p style="margin: 10px 0;"><span style="text-decoration: line-through; color: #64748b; font-size: 1rem;">R750</span> <strong style="font-size: 2rem; color: #34d399; margin-left: 8px;">R299</strong> <span style="font-size: 0.85rem; color: #94a3b8;">ZAR</span></p>
             <a href="#" class="cta-btn">🔒 Pay Securely via Yoco</a>
-            <p style="font-size: 0.8rem; margin-top: 0.5rem; color: #94a3b8;">Encrypted, instant card processing powered by Yoco</p>
+            <p style="font-size: 0.75rem; margin-top: 10px; color: #64748b;">Encrypted, instant card processing powered by Yoco</p>
         </section>
 
         <footer>
-            <p>© 2026 Pocket State Architecture (PSA™) • Creator & Founder: Rean V Aswegen • Powered by PSA™</p>
-            <p style="margin-top: 0.5rem; font-style: italic;">"PS: Everything you see here was built completely using PSA™ and a phone terminal — no laptop or PC was harmed in the making of this site."</p>
+            <p style="margin: 0 0 8px 0;">© 2026 Pocket State Architecture (PSA™)<br>Creator & Founder: Rean V Aswegen</p>
+            <p style="margin: 0; font-style: italic; color: #64748b; font-size: 0.75rem;">"PS: Everything you see here was built completely using PSA™ and a phone terminal — no laptop or PC was harmed in the making of this site."</p>
         </footer>
 
     </div>
+
+    <script>
+        const states = {
+            clients: ["1 Client", "5 Clients", "12 Clients", "25+ Enterprise"],
+            saas: ["R3,500", "R17,500", "R42,000", "R87,500"],
+            capital: ["R42,000", "R210,000", "R504,000", "R1,050,000"],
+            margin: ["98.5%", "99.1%", "99.8%", "100% Sovereign"]
+        };
+
+        const indices = { clients: 0, saas: 0, capital: 0, margin: 0 };
+
+        function cycleMetric(type, element) {
+            indices[type] = (indices[type] + 1) % states[type].length;
+            const valEl = document.getElementById('val-' + type);
+            valEl.textContent = states[type][indices[type]];
+            
+            // Subtle pulse feedback on tap
+            element.style.transform = 'scale(0.96)';
+            setTimeout(() => { element.style.transform = 'scale(1)'; }, 150);
+        }
+    </script>
 </body>
 </html>
