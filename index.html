@@ -6,10 +6,10 @@
     <title>PSA™ // Pocket State Architecture</title>
     <style>
         @keyframes softBackground {
-            0% { background-color: #030712; }
-            33% { background-color: #0c0a1d; }
-            66% { background-color: #051614; }
-            100% { background-color: #030712; }
+            0% { background-color: #020617; }
+            33% { background-color: #0b091f; }
+            66% { background-color: #041412; }
+            100% { background-color: #020617; }
         }
 
         @keyframes softText {
@@ -20,10 +20,10 @@
         }
 
         @keyframes borderGlow {
-            0% { border-color: rgba(56, 189, 248, 0.3); box-shadow: 0 0 15px rgba(56, 189, 248, 0.05); }
-            33% { border-color: rgba(192, 132, 252, 0.3); box-shadow: 0 0 20px rgba(192, 132, 252, 0.1); }
-            66% { border-color: rgba(52, 211, 153, 0.3); box-shadow: 0 0 15px rgba(52, 211, 153, 0.05); }
-            100% { border-color: rgba(56, 189, 248, 0.3); box-shadow: 0 0 15px rgba(56, 189, 248, 0.05); }
+            0% { border-color: rgba(56, 189, 248, 0.35); box-shadow: 0 0 20px rgba(56, 189, 248, 0.08); }
+            33% { border-color: rgba(192, 132, 252, 0.35); box-shadow: 0 0 25px rgba(192, 132, 252, 0.12); }
+            66% { border-color: rgba(52, 211, 153, 0.35); box-shadow: 0 0 20px rgba(52, 211, 153, 0.08); }
+            100% { border-color: rgba(56, 189, 248, 0.35); box-shadow: 0 0 20px rgba(56, 189, 248, 0.08); }
         }
 
         * {
@@ -34,11 +34,11 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #030712;
-            color: #f1f5f9;
+            background-color: #020617;
+            color: #f8fafc;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace, sans-serif;
             animation: softBackground 18s ease-in-out infinite;
-            line-height: 1.5;
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
         }
 
@@ -57,13 +57,13 @@
         }
 
         header, section, footer {
-            background: rgba(10, 15, 30, 0.85);
-            border: 1px solid rgba(56, 189, 248, 0.25);
-            border-radius: 12px;
+            background: rgba(10, 15, 30, 0.9);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 14px;
             padding: 20px;
             margin-bottom: 16px;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             animation: borderGlow 18s ease-in-out infinite;
         }
 
@@ -74,21 +74,21 @@
 
         .status-badge {
             display: inline-block;
-            background: rgba(52, 211, 153, 0.1);
+            background: rgba(52, 211, 153, 0.12);
             color: #34d399;
-            border: 1px solid rgba(52, 211, 153, 0.3);
-            padding: 4px 10px;
+            border: 1px solid rgba(52, 211, 153, 0.35);
+            padding: 5px 12px;
             border-radius: 20px;
             font-size: 0.75rem;
-            font-weight: bold;
+            font-weight: 700;
             margin-bottom: 12px;
             letter-spacing: 0.5px;
         }
 
         .terminal-box {
-            background: #02040a;
+            background: #010409;
             border: 1px solid #1e293b;
-            border-radius: 8px;
+            border-radius: 10px;
             padding: 14px;
             font-family: monospace;
             font-size: 0.82rem;
@@ -97,6 +97,7 @@
             white-space: pre-wrap;
             word-break: break-all;
             margin: 12px 0;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.5);
         }
 
         .grid {
@@ -113,32 +114,53 @@
         }
 
         .card {
-            background: rgba(15, 23, 42, 0.6);
+            background: rgba(15, 23, 42, 0.7);
             border: 1px solid #1e293b;
             padding: 16px;
-            border-radius: 8px;
-            transition: transform 0.2s ease, border-color 0.2s ease;
+            border-radius: 10px;
+            transition: all 0.2s ease;
         }
 
         .card:active {
             transform: scale(0.98);
         }
 
-        .interactive-metric {
+        .interactive-card {
             cursor: pointer;
             user-select: none;
+            position: relative;
         }
 
-        .interactive-metric:hover {
-            border-color: rgba(56, 189, 248, 0.5);
-            background: rgba(15, 23, 42, 0.9);
+        .interactive-card:hover {
+            border-color: rgba(56, 189, 248, 0.6);
+            background: rgba(20, 30, 55, 0.85);
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.1);
         }
 
         .metrics-val {
-            font-size: 1.4rem;
+            font-size: 1.45rem;
             font-weight: 800;
             color: #34d399;
             margin-top: 4px;
+        }
+
+        .sandbox-interactive {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px dashed rgba(56, 189, 248, 0.4);
+            cursor: pointer;
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: #38bdf8;
+            margin-top: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .sandbox-interactive:hover {
+            background: rgba(56, 189, 248, 0.1);
+            border-color: #38bdf8;
         }
 
         .cta-btn {
@@ -146,19 +168,20 @@
             width: 100%;
             text-align: center;
             background: linear-gradient(135deg, #38bdf8, #818cf8);
-            color: #030712;
+            color: #020617;
             padding: 14px 20px;
-            border-radius: 8px;
+            border-radius: 10px;
             font-weight: 800;
             text-decoration: none;
             font-size: 1rem;
             margin-top: 16px;
-            box-shadow: 0 4px 14px rgba(56, 189, 248, 0.3);
-            transition: opacity 0.2s ease;
+            box-shadow: 0 4px 16px rgba(56, 189, 248, 0.35);
+            transition: all 0.2s ease;
         }
 
         .cta-btn:active {
-            opacity: 0.85;
+            transform: scale(0.98);
+            opacity: 0.9;
         }
 
         ul {
@@ -190,17 +213,17 @@
         
         <header>
             <div class="status-badge">● LIVE MOBILE NODE: ACTIVE</div>
-            <p style="font-size: 0.85rem; color: #94a3b8; margin: 0 0 8px 0;">
+            <p style="font-size: 0.82rem; color: #94a3b8; margin: 0 0 8px 0; font-family: monospace;">
                 SYS: SOVEREIGN | LATENCY: 0.4ms | SaaS COST: R0.00/mo
             </p>
             <h1 class="brand-title" style="font-size: 1.75rem; margin: 0 0 10px 0;">Pocket State Architecture (PSA™)</h1>
-            <p style="font-size: 0.95rem; color: #e2e8f0; margin: 0 0 12px 0;"><strong>Zero Cloud. Zero SaaS. Total System Control.</strong></p>
+            <p style="font-size: 0.95rem; color: #f1f5f9; margin: 0 0 10px 0;"><strong>Zero Cloud. Zero SaaS. Total System Control.</strong></p>
             <p style="font-size: 0.9rem; color: #cbd5e1; margin: 0;">Deploy high-margin sales pipelines, offline-first client engines, and POSIX shell routines directly from your mobile terminal.</p>
         </header>
 
         <section>
             <h3 style="margin-top: 0; font-size: 1.1rem;">💻 Terminal Sandbox</h3>
-            <div class="terminal-box">termux@psa-node:~ (ARM64 POSIX)
+            <div class="terminal-box" id="terminal-screen">termux@psa-node:~ (ARM64 POSIX)
 termux@psa-node:~$ psa --init
 
 [✓] PSA Master Engine v5.2 Initialized
@@ -209,18 +232,25 @@ termux@psa-node:~$ psa --init
 --------------------------------------------------
 termux@psa-node:~$ psa --status
 [✓] Status: 100% Sovereign Mobile Execution</div>
+            <div class="sandbox-interactive" onclick="runTerminalCommand()">
+                ⚡ Tap to Run Diagnostic Scan (`psa --audit`)
+            </div>
         </section>
 
-        <section>
-            <span class="status-badge" style="background: rgba(192, 132, 252, 0.1); color: #c084fc; border-color: rgba(192, 132, 252, 0.3);">MASTER GUIDE SPOTLIGHT</span>
+        <section class="interactive-card" onclick="toggleGuideExpansion(this)">
+            <span class="status-badge" style="background: rgba(192, 132, 252, 0.12); color: #c084fc; border-color: rgba(192, 132, 252, 0.35);">MASTER GUIDE SPOTLIGHT [TAP TO EXPAND]</span>
             <h2 style="font-size: 1.35rem; margin: 8px 0;">PSA™ VOLUME 1: FIRST LIGHT SALES GUIDE</h2>
             <p style="font-size: 0.85rem; color: #94a3b8; margin: 0 0 10px 0;"><strong>BY REAN V ASWEGEN</strong></p>
             <p style="font-size: 0.9rem; color: #cbd5e1;">The ultimate blueprint for building automated sales pipelines and offline client systems directly from Unix shell environments.</p>
-            <ul>
-                <li><strong>Mobile Shell Setup:</strong> Zero-dependency terminal workflows.</li>
-                <li><strong>R15,000+ Agency Model:</strong> High-margin, $0/mo hosting solutions.</li>
-                <li><strong>Instant Access:</strong> Secure Yoco processing with instant delivery.</li>
-            </ul>
+            <div id="guide-extra" style="display: none; margin-top: 10px; border-top: 1px solid #1e293b; padding-top: 10px;">
+                <p style="font-size: 0.85rem; color: #38bdf8; margin: 0 0 8px 0;"><strong>Included Module Breakdown:</strong></p>
+                <ul>
+                    <li>Zero-dependency mobile terminal workflows & script templates.</li>
+                    <li>R15,000+ local agency structuring with $0/mo hosting overhead.</li>
+                    <li>Secure Yoco payment gateway integration hooks.</li>
+                </ul>
+            </div>
+            <div class="tap-hint" id="guide-hint">[Tap card for details]</div>
         </section>
 
         <section>
@@ -249,22 +279,22 @@ termux@psa-node:~$ psa --status
             <h3 style="margin-top: 0; font-size: 1.1rem;">📊 Interactive PSA™ Metrics Engine</h3>
             <p style="font-size: 0.8rem; color: #94a3b8; margin: 0 0 12px 0;">Tap cards to cycle live performance parameters:</p>
             <div class="grid grid-2">
-                <div class="card interactive-metric" onclick="cycleMetric('clients', this)">
+                <div class="card interactive-card" onclick="cycleMetric('clients', this)">
                     <p style="margin: 0; font-size: 0.8rem; color: #94a3b8;">Active Client Systems</p>
                     <div class="metrics-val" id="val-clients">1 Client</div>
                     <div class="tap-hint">[Tap to scale]</div>
                 </div>
-                <div class="card interactive-metric" onclick="cycleMetric('saas', this)">
+                <div class="card interactive-card" onclick="cycleMetric('saas', this)">
                     <p style="margin: 0; font-size: 0.8rem; color: #94a3b8;">Monthly SaaS Saved</p>
                     <div class="metrics-val" id="val-saas">R3,500</div>
                     <div class="tap-hint">[Tap to boost]</div>
                 </div>
-                <div class="card interactive-metric" onclick="cycleMetric('capital', this)">
+                <div class="card interactive-card" onclick="cycleMetric('capital', this)">
                     <p style="margin: 0; font-size: 0.8rem; color: #94a3b8;">Annual Capital Retained</p>
                     <div class="metrics-val" id="val-capital">R42,000</div>
                     <div class="tap-hint">[Tap to scale]</div>
                 </div>
-                <div class="card interactive-metric" onclick="cycleMetric('margin', this)">
+                <div class="card interactive-card" onclick="cycleMetric('margin', this)">
                     <p style="margin: 0; font-size: 0.8rem; color: #94a3b8;">Agency Profit Margin</p>
                     <div class="metrics-val" id="val-margin">98.5%</div>
                     <div class="tap-hint">[Tap to peak]</div>
@@ -304,9 +334,26 @@ termux@psa-node:~$ psa --status
             const valEl = document.getElementById('val-' + type);
             valEl.textContent = states[type][indices[type]];
             
-            // Subtle pulse feedback on tap
             element.style.transform = 'scale(0.96)';
             setTimeout(() => { element.style.transform = 'scale(1)'; }, 150);
+        }
+
+        function runTerminalCommand() {
+            const screen = document.getElementById('terminal-screen');
+            screen.textContent += "\ntermux@psa-node:~$ psa --audit\n[✓] Scanning ARM64 POSIX Core...\n[✓] Zero Cloud Leak Detected: 100% Secure\n[✓] All Local Pipelines Operational";
+            screen.scrollTop = screen.scrollHeight;
+        }
+
+        function toggleGuideExpansion(element) {
+            const extra = document.getElementById('guide-extra');
+            const hint = document.getElementById('guide-hint');
+            if (extra.style.display === 'none') {
+                extra.style.display = 'block';
+                hint.textContent = '[Tap card to collapse]';
+            } else {
+                extra.style.display = 'none';
+                hint.textContent = '[Tap card for details]';
+            }
         }
     </script>
 </body>
