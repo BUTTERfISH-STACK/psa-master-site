@@ -26,6 +26,13 @@
             100% { opacity: 1; transform: scale(1); }
         }
 
+        @keyframes softColorShift {
+            0% { color: var(--accent-cyan); text-shadow: 0 0 15px rgba(56, 189, 248, 0.3); }
+            33% { color: var(--accent-purple); text-shadow: 0 0 15px rgba(192, 132, 252, 0.3); }
+            66% { color: var(--accent-emerald); text-shadow: 0 0 15px rgba(52, 211, 153, 0.3); }
+            100% { color: var(--accent-cyan); text-shadow: 0 0 15px rgba(56, 189, 248, 0.3); }
+        }
+
         * {
             box-sizing: border-box;
             -webkit-tap-highlight-color: transparent;
@@ -119,6 +126,11 @@
             font-size: 1.45rem;
             margin: 0 0 12px 0;
             text-transform: uppercase;
+        }
+
+        .header-title-shift {
+            animation: softColorShift 8s ease-in-out infinite;
+            will-change: color, text-shadow;
         }
 
         .terminal-box {
@@ -313,7 +325,7 @@
             <div>
                 <span class="sys-telemetry">SYS: SOVEREIGN | LATENCY: 0.4ms | SaaS COST: R0.00/mo</span>
             </div>
-            <h1 style="font-size: 2.3rem; font-weight: 900; letter-spacing: -0.03em; margin: 0 0 16px 0; line-height: 1.15; text-transform: uppercase;">Pocket State Architecture (PSA™)</h1>
+            <h1 class="header-title-shift" style="font-size: 2.3rem; font-weight: 900; letter-spacing: -0.03em; margin: 0 0 16px 0; line-height: 1.15; text-transform: uppercase;">Pocket State Architecture (PSA™)</h1>
             <p style="font-size: 1.2rem; font-weight: 800; color: #f8fafc; margin: 0 0 14px 0; letter-spacing: 0.5px;">Zero Cloud. Zero SaaS. Total System Control.</p>
             <p style="font-size: 0.98rem; color: #cbd5e1; margin: 0 auto; max-width: 500px; line-height: 1.7;">Deploy high-margin sales pipelines, offline-first client engines, and POSIX shell routines directly from your mobile terminal.</p>
         </header>
